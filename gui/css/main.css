@@ -1,0 +1,316 @@
+@media (max-width: 2400px) {
+    html {
+        font-size: 12px;
+    };
+}
+@media (max-width: 700px) {
+    html {
+        font-size: 8px;
+    };
+}
+@media (max-width: 500px) {
+    html {
+        font-size: 7px;
+    };
+}
+
+@media (max-width: 400px) {
+    html {
+        font-size: 6px;
+    };
+}
+
+body {
+  margin:0;
+  padding:0;
+  background-color: #1B1C30;
+  font-family: 'Roboto', sans-serif;
+}
+#videoOverlay{
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1001;
+  background-color: rgba(255, 255, 255, 0.85);
+  /* display: none; */
+}
+#videoBgg{
+  position: fixed;
+  right: 0;
+  top: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: 990;
+  background-color: rgba(255, 255, 255, 1);
+  /* display: none; */
+
+}
+#videoBg {
+  position: fixed;
+  right:0;
+  top:0;
+  object-fit: fill;
+  width: 100%;
+  height: 100vh;
+  z-index: 1000;
+  /* display: none; */
+}
+.titleText{
+  margin-left: 4rem;
+  width: auto;
+  max-width: 85%;
+  user-select: none;
+}
+#titleMain{
+  margin-top: 5rem;
+  font-size: 3.75rem;
+  line-height: 3.5rem;
+  font-weight: bold;
+  font-family: Georgia, serif;
+  color:rgb(0, 11, 70);
+  margin-left: 1rem !important; 
+  user-select: none;
+}
+#titleSub{
+  margin-top: 0.5rem;
+  font-size: 2.5rem;
+  line-height: 2.5rem;
+  color:rgb(0, 0, 0);
+  user-select: none;
+}
+.titleCopy{
+  font-size: 1.5rem;
+  color:rgb(0, 0, 0);
+  user-select: none;
+  font-family: Georgia, serif;
+  width: 65rem;
+}
+#titleExit{
+  width:100%;
+  position: absolute;
+  bottom:8rem;
+  font-size: 2.25rem;
+  color:rgb(79, 0, 147);
+  font-weight: bold;
+  text-align: center;
+  user-select: none;
+}
+.modal-content{
+  background-color: #1B1C30 !important;
+}
+#container {
+  position:absolute;
+  top:0; bottom:0;
+  width:100%;
+  height: 100%;
+  background-color: #1B1C30;
+  padding: 2rem;
+}
+#mapLegend{
+  position: absolute;
+  z-index: 100;
+  background-color: #1B1C30;
+  padding: 1rem;
+  bottom:1.5rem;
+  right:0.5rem;
+}
+.legendItemBox{
+  /* display: none; */
+  height: 1.5rem !important;
+}
+.legendTitle{
+  pointer-events: none;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: rgb(208, 208, 208);
+  /* text-shadow: 0 0 0.5em #000000, 0 0 0.5em #000000, 0 0 0.5em #000000; */
+}
+.legendSubtitle{
+  pointer-events: none;
+  font-size: 0.8rem;
+  color: rgb(208, 208, 208);
+  /* text-shadow: 0 0 0.5em #000000, 0 0 0.5em #000000, 0 0 0.5em #000000; */
+}
+.legendItemLabel{
+  pointer-events: none;
+  position: relative;
+  font-size: 0.75rem;
+  margin-left: 2rem;
+  height: 1rem;
+  bottom: 1.25rem;
+  color: rgb(208, 208, 208);
+  font-weight: bold;
+  /* text-shadow: 0 0 0.5em #000000, 0 0 0.5em #000000, 0 0 0.5em #000000; */
+}
+.mapLegendBox{
+  width: 1.5rem;
+  height: 1.5rem;
+}
+.progress{
+  position: absolute;
+  display: none;
+  z-index: 500;
+  width: 100%;
+  height: 10px;
+  top:-8px !important;
+}
+#map{
+  height: 60vh;
+  pointer-events: none;
+}
+#hoverInfoBox{
+  user-select: none; /* Standard */
+  position: absolute;
+  z-index: 1000;
+  padding: 1rem;
+  background-color: #f2f2f2;
+  display: none;
+  border-radius: 10px;
+  line-height: 1.5rem;
+  max-width: 25%;
+  max-height: 75vh;
+}
+.hoverTitle{
+  color: rgb(65, 65, 65);
+  font-size: 1.5rem;
+}
+.hoverBody{
+  color: rgb(65, 65, 65);
+  font-size: 1.25rem;
+}
+#clearDrawingButton{
+  position: absolute;
+  display: none;
+  top:1rem;
+  left:2rem;
+}
+.redHighlight{
+  color:#b45353
+}
+.panelBlock{
+  padding: 1rem !important;
+  margin: 0.5rem 0rem 0.5rem 0rem !important;
+  background-color: #111222 !important;
+  border-radius: 10px !important;
+  }
+.hasRightNeighbor{
+  border-right: 1rem solid #1B1C30;
+}
+.dataTable{
+  height:30rem !important;
+  /* width: 100%;
+  max-height: 50vh; */
+}
+
+.inputStyle{
+  width:100% !important;
+  color:rgb(204, 204, 204) !important;
+}
+.dateSelect{
+  /* background-color:  rgb(203, 203, 203) !important; */
+  color:rgb(255, 255, 255) !important;
+  border-radius: 5px !important;
+  /* padding-left: 1rem !important; */
+  font-size: 1rem !important;
+}
+::-webkit-calendar-picker-indicator {
+    filter: invert(1) !important;
+}
+::-webkit-calendar-picker-indicator {
+    background-color: rgba(255, 255, 255,0) !important;
+}
+.thresholdSelect{
+  width:100% !important;
+  /* text-align: center !important; */
+  color:rgb(159, 156, 156);
+}
+.padded{
+  margin: 1rem;
+}
+.btn{
+  background-color: #3D4ADB !important;
+}
+.inputTitle{
+  /* color: #c2c2c2; */
+  color: #3D4ADB !important;
+  font-weight:600;
+  font-size: 1.125rem;
+}
+.inputSubTitle{
+  /* color: white !important; */
+  color: #8f8f8f !important;
+  text-align: center !important;
+  font-weight:600;
+  font-size: 0.75rem;
+}
+.analyteTitle{
+  color: white !important;
+  text-align: center !important;
+  font-weight:600;
+  font-size: 1rem;
+}
+.boxCopy{
+  color: rgb(209, 209, 209);
+  font-size: 0.75rem;
+}
+.colSml{
+  padding:2px !important;
+}
+.disabled{
+  color:rgb(61, 61, 61) !important;
+}
+.tabulator{
+  background-color: #111222 !important;
+  border:0px !important;
+  border-radius: 10px !important;
+}
+.tabulator-row{
+    background-color: #111222 !important;
+}
+
+.tabulator-row{
+  padding: 0.5rem !important;
+  color:#e3e3e3 !important;
+}
+.tabulator-cell{
+  border: 0px !important;
+  border-bottom: 0.5px solid #1B1C30 !important;
+}
+.tabulator-col{
+  background-color: #111222 !important;
+}
+.tabulator-headers{
+  background-color: #111222 !important;
+}
+.tabulator-footer{
+  background-color: #111222 !important;
+}
+.tabulator-page{
+  color:#bababa !important;
+}
+.tabulator-header .tabulator-col {
+    border-right: 1px solid #111222 !important;
+    border-bottom: 1px solid #040509 !important;
+    color: #3D4ADB !important;
+    background-color: #111222 !important;
+    font-size: 1.1rem;
+  }
+.select-dropdown{
+  /* background-color: #3D4ADB !important; */
+  /* background-color: #16172d !important; */
+  color:#acacac!important;
+}
+.caret{
+  fill: #3D4ADB !important;
+}
+.tabs{
+  background-color: #111222 !important;
+}
+.progress {
+  background-color: #a8afff !important;
+}
+.progress .indeterminate {
+  background-color: #3D4ADB !important;
+}

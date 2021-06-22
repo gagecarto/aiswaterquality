@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+
+  <!--Import materialize.css-->
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js"></script>
+  <link href="https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css" rel="stylesheet" />
+
+  <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.0.9/mapbox-gl-draw.js"></script>
+  <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.0.9/mapbox-gl-draw.css" type="text/css" />
+
+  <link rel="stylesheet" href="./tabulator/css/tabulator_midnight.css">
+
+  <link rel="stylesheet" href="./css/main.css">
+
+  <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+  <script src="./js/globals.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js" integrity="sha512-rKFvwjvE4liWPlFnvH4ZhRDfNZ9FOpdkD/BU5gAIA3VS3vOQrQ5BjKgbO3kxebKhHdHcNUHLqxQYSoxee9UwgA==" crossorigin="anonymous"></script>
+  <script src="./js/FileSaver.js"></script>
+
+  <script src="./js/main.js"></script>
+  <script src="./js/map.js"></script>
+  <script src="./js/dbfunctions.js"></script>
+
+  <script src="./js/varDefs.js"></script>
+  <!-- <script src="./tabulator/tabulator.min.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tabulator/4.9.1/js/tabulator.min.js" integrity="sha512-zFvztrGzhtyNJT5P4LXfFH7gWfJMRhrFC/HhiX5kKCchQM+So1pgy+p57bJ9TkLJrTQTFudKI01T/2Oul6baaQ==" crossorigin="anonymous"></script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+
+
+  <div id="videoOverlay" class='videoCover'>
+      <div id='titleMain' class="titleText">DD</div><br>
+      <div id='titleSub' class="titleText">Dreissenid Mussel<br>Risk Assessment Tool</div><br>
+      <div class='titleCopy titleText'>This tool allows users to explore water quality data and where it may contribute to elevated risk of dreissenid mussel establishment.<br><br>
+      Users can explore tabular data aggregated by monitoring location or mapped via location points or on stream segments.<br><br>
+      Follow this link to view the user guide or click anywhere to start using the application
+      </div>
+      <div id='titleExit'>CLICK ANYWHERE TO EXPLORE THE APPLICATION</div>
+ </div>
+<video autoplay muted loop id="videoBg" class='videoCover'>
+  <source src="video/Pexels Videos 2815408.mp4" type="video/mp4">
+</video>
+<div id="videoBgg" class='videoCover'>
+</div>
+
+
+  <div id="configModal" class="modal">
+    <div class="modal-content">
+
+
+
+
+      <div class='col boxCopy row'>
+        <span class='inputTitle'>Analyte Thresholds</span>
+        <div class='col boxCopy s12'>These represent the breakpoints for determing high/moderate/low risk based on the 2 analytes</div>
+
+        <span class='col s12 analyteTitle'>calcium</span><br>
+        <div class='col s4'>
+          <span class='inputSubTitle'>low (fixed)</span>
+          <input type="number" name="ca" data-attr='low' id="" value="" class='thresholdSelect' min="0">
+        </div>
+        <div class='col s4'>
+          <span class='inputSubTitle'>moderate</span>
+          <input type="number" name="ca" data-attr='medium' id="" value="" class='thresholdSelect' min="0">
+        </div>
+        <div class='col s4'>
+          <span class='inputSubTitle'>high</span>
+          <input type="number" name="ca" data-attr='high' id="" value="" class='thresholdSelect' min="0">
+        </div>
+
+        <span class='col s12 analyteTitle'>ph</span><br>
+        <div class='col s4'>
+          <span class='inputSubTitle'>low (fixed)</span>
+          <input type="number" name="ph" data-attr='low' id="" value="" class='thresholdSelect' min="0">
+        </div>
+        <div class='col colSml s1'>
+          <span class='inputSubTitle'>moderate 1 low</span>
+          <input type="number" name="ph" data-attr='medium1Low' id="" value="" class='thresholdSelect' min="0">
+        </div>
+        <div class='col colSml s1'>
+          <span class='inputSubTitle'>moderate 1 high</span>
+          <input type="number" name="ph" data-attr='medium1High' id="" value="" class='thresholdSelect' min="0">
+        </div>
+        <div class='col colSml s1'>
+          <span class='inputSubTitle'>moderate 2 low</span>
+          <input type="number" name="ph" data-attr='medium2Low' id="" value="" class='thresholdSelect' min="0">
+        </div>
+        <div class='col colSml s1'>
+          <span class='inputSubTitle'>moderate 2 high</span>
+          <input type="number" name="ph" data-attr='medium2High' id="" value="" class='thresholdSelect' min="0">
+        </div>
+        <div class='col s2'>
+          <span class='inputSubTitle'>high low</span>
+          <input type="number" name="ph" data-attr='highLow' id="" value="" class='thresholdSelect' min="0">
+        </div>
+        <div class='col s2'>
+          <span class='inputSubTitle'>high high</span>
+          <input type="number" name="ph" data-attr='highHigh' id="" value="" class='thresholdSelect' min="0">
+        </div>
+
+        <!-- <span class='col s12 analyteTitle'>temperature</span><br>
+        <div class='col s4'>
+          <span class='inputSubTitle'>low (fixed)</span>
+          <input type="number" name="temp" data-attr='low' id="" value="" class='thresholdSelect' min="0">
+        </div>
+        <div class='col s4'>
+          <span class='inputSubTitle'>medium</span>
+          <input type="number" name="temp" data-attr='medium' id="" value="" class='thresholdSelect' min="0">
+        </div>
+        <div class='col s4'>
+          <span class='inputSubTitle'>high</span>
+          <input type="number" name="temp" data-attr='high' id="" value="" class='thresholdSelect' min="0">
+        </div> -->
+
+      </div>
+
+      <div class='row'>
+
+        <!-- <div class='col s6'>
+          <span class='inputTitle'>Temp confidence</span><br>
+          <span class='boxCopy'>Filter sites using temperature confidence</span>
+          <select id='confidenceSelect'>
+            <option value="none" selected>False - Show all sites</option>
+            <option value="true">True - Show only sites with medium-high confidence</option>
+
+          </select>
+        </div> -->
+
+        <div class='col s6'>
+          <span class='inputTitle'>Sample size confidence</span><br>
+          <span class='boxCopy'>Choose the minimum number of observations for a site to be shown</span><br>
+          <span class='boxCopy'>CA</span><input type="number" id="caSampleSizeInput" class='inputStyle' value="1" min="1">
+          <span class='boxCopy'>pH</span><input type="number" id="phSampleSizeInput" class='inputStyle' value="1" min="1">
+        </div>
+
+        <!-- <div class="col s6"></div> -->
+
+      <!-- <div class='col s6'>
+        <span class='inputTitle'>Draw data above/below sites</span><br>
+        <span class='boxCopy'>When symbolizing stream segments, should data be extended to adjacent segments?</span>
+        <select id='extendSelect'>
+          <option value="true" selected>True - Extend Data</option>
+          <option value="false">False - Do not extend</option>
+        </select>
+      </div> -->
+
+      <div class='col s6'>
+        <span class='inputTitle'>Show only BOR sites</span><br>
+        <span class='boxCopy'>Select this option to only show BOR sites on the map</span>
+        <select id='borSelect'>
+          <option value="false" selected>False, show all sites</option>
+          <option value="true">True, show only BOR sites</option>
+        </select>
+
+
+      </div>
+
+      <div class='col s6'>
+        <span class='inputTitle'>Show sites that only have pH</span><br>
+        <span class='boxCopy'>Check this box to to only show sites that have pH observations and do not have ca observations</span>
+        <select id='phNoCaSelect'>
+          <option value="false" selected>False, show all sites</option>
+          <option value="true">True, only show sites that are lacking ca observations</option>
+        </select>
+      </div>
+
+
+
+      </div>
+
+
+
+    </div>
+  </div>
+
+  <div id='hoverInfoBox'></div>
+
+  <div class="progress">
+    <div class="indeterminate"></div>
+  </div>
+
+  <div id='container' class='row'>
+
+
+
+    <div class='col left hasRightNeighbor s4'>
+      <div class='col panelBlock s12'>
+        <!-- <span class='inputTitle'>Query Data Using</span> -->
+        <!-- <select id='queryTypeSelect'>
+          <option value="all" selected>All Sites</option>
+          <option value="huc">HUC 8 Boundaries</option>
+        </select> -->
+        <br>
+        <!-- <span class='inputTitle'>Display Results Using</span>
+        <select id='resultsTypeSelect'>
+          <option value="nhd">NHD Flowlines and Water Bodies</option>
+          <option value="sites" selected>Monitoring Location Sites</option>
+        </select>
+        <br> -->
+        <span class='inputTitle'>Site types filter</span><br>
+        <select multiple id='siteTypeSelect'>
+          <option value="streams" selected>Rivers & Streams</option>
+          <option value="lakes" selected>Lakes & Reservoirs</option>
+        </select>
+        <br>
+        <span class='inputTitle'>Draw Sites Using</span>
+        <select id='selectedMetricSelect'>
+          <!-- <option value="caph">Calcium + pH</option> -->
+          <option value="ca" selected>Calcium</option>
+          <option value="ph">pH</option>
+          <!-- <option value="phNoCa">pH but no Calcium</option> -->
+          <!-- <option value="temp">Temperature</option> -->
+        </select>
+        <br>
+          <span class='inputTitle'>Date Range</span>
+          <div class='col boxCopy s12'>Edit dates below to change date range of query</div>
+          <div class='col s6'>
+            <span class='inputSubTitle'>Minimum Date</span>
+            <input type="date" name="minDate" id="minDateInput" value="2020-01-01" class='dateSelect inputStyle'>
+          </div>
+          <div class='col s6'>
+            <span class='inputSubTitle'>Maximum Date</span>
+            <input type="date" name="maxDate" id="maxDateInput" value="" class='dateSelect inputStyle'>
+          </div>
+        <br><br><br><br>
+        <a class="waves-effect waves-light btn btn-small" id='advancedOptionsButton'><i class="material-icons right">settings</i>ADVANCED OPTIONS</a>
+      </div>
+
+    </div>
+
+
+
+
+    <div class='col panelBlock s8 right'>
+      <div id='map' class='col s12'>
+        <div id="mapLegend">
+   <span class="legendTitle">Risk<br>Score</span><br>
+
+   <div class="legendItemBox">
+      <div class="mapLegendBox" style="background-color:#7400B8"></div>
+      <div class="legendItemLabel">High</div>
+   </div>
+   <div class="legendItemBox">
+      <div class="mapLegendBox" style="background-color:#48BFE3"></div>
+      <div class="legendItemLabel">Moderate</div>
+   </div>
+   <div class="legendItemBox">
+      <div class="mapLegendBox" style="background-color:#80FFDB"></div>
+      <div class="legendItemLabel">Low</div>
+   </div>
+
+</div>
+        <a class="waves-effect waves-light btn" id='clearDrawingButton'><i class="material-icons">delete</i></a>
+      </div>
+    </div>
+
+
+
+
+
+    <div id="" class='col s12 panelBlock'>
+      <div id="avgTable" class='col s12 dataTable'></div>
+      <a class="waves-effect waves-light btn btn-small left padded" id='downloadTable'><i class="material-icons right">save</i>DOWNLOAD THIS TABLE</a>
+      <!-- <a class="waves-effect waves-light btn btn-small right padded" id='downloadDailyData'><i class="material-icons right">save</i>DOWNLOAD ALL DAILY OBSERVATIONS</a> -->
+    </div>
+
+    <div class='col panelBlock s12' id='metadataPanel'>
+      <span class='redHighlight left'>Last checked for updates: 02/26/2020</span>
+      <span class='redHighlight right'>Newest data in system: 01/30/2020</span>
+    </div>
+
+
+
+
+
+  </div>
+
+</body>
+
+</html>
